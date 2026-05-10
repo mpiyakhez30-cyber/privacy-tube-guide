@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
+import { VideoPlayer } from "@/components/VideoPlayer";
 import { piped, formatViews } from "@/lib/piped";
 import { subs, history } from "@/lib/local-store";
 import { Heart, HeartOff, ThumbsUp, Eye } from "lucide-react";
@@ -46,17 +47,13 @@ function WatchPage() {
     <AppShell>
       <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
         <div>
-          <div className="overflow-hidden rounded-2xl border border-border bg-black">
-            <div className="aspect-video">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
-                title={data.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="h-full w-full border-0"
-              />
-            </div>
-          </div>
+          <VideoPlayer
+            hls={data.hls}
+            videoStreams={data.videoStreams}
+            audioStreams={data.audioStreams}
+            poster={data.thumbnailUrl}
+            title={data.title}
+          />
 
           <h1 className="mt-4 text-xl font-bold leading-snug md:text-2xl">{data.title}</h1>
 
