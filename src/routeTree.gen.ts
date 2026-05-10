@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrendingRouteImport } from './routes/trending'
 import { Route as SubscriptionsRouteImport } from './routes/subscriptions'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as HistoryRouteImport } from './routes/history'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WatchVideoIdRouteImport } from './routes/watch.$videoId'
+import { Route as ChannelChannelIdRouteImport } from './routes/channel.$channelId'
 
 const TrendingRoute = TrendingRouteImport.update({
   id: '/trending',
@@ -29,44 +32,93 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WatchVideoIdRoute = WatchVideoIdRouteImport.update({
+  id: '/watch/$videoId',
+  path: '/watch/$videoId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChannelChannelIdRoute = ChannelChannelIdRouteImport.update({
+  id: '/channel/$channelId',
+  path: '/channel/$channelId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/history': typeof HistoryRoute
   '/search': typeof SearchRoute
   '/subscriptions': typeof SubscriptionsRoute
   '/trending': typeof TrendingRoute
+  '/channel/$channelId': typeof ChannelChannelIdRoute
+  '/watch/$videoId': typeof WatchVideoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/history': typeof HistoryRoute
   '/search': typeof SearchRoute
   '/subscriptions': typeof SubscriptionsRoute
   '/trending': typeof TrendingRoute
+  '/channel/$channelId': typeof ChannelChannelIdRoute
+  '/watch/$videoId': typeof WatchVideoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/history': typeof HistoryRoute
   '/search': typeof SearchRoute
   '/subscriptions': typeof SubscriptionsRoute
   '/trending': typeof TrendingRoute
+  '/channel/$channelId': typeof ChannelChannelIdRoute
+  '/watch/$videoId': typeof WatchVideoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/search' | '/subscriptions' | '/trending'
+  fullPaths:
+    | '/'
+    | '/history'
+    | '/search'
+    | '/subscriptions'
+    | '/trending'
+    | '/channel/$channelId'
+    | '/watch/$videoId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/search' | '/subscriptions' | '/trending'
-  id: '__root__' | '/' | '/search' | '/subscriptions' | '/trending'
+  to:
+    | '/'
+    | '/history'
+    | '/search'
+    | '/subscriptions'
+    | '/trending'
+    | '/channel/$channelId'
+    | '/watch/$videoId'
+  id:
+    | '__root__'
+    | '/'
+    | '/history'
+    | '/search'
+    | '/subscriptions'
+    | '/trending'
+    | '/channel/$channelId'
+    | '/watch/$videoId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HistoryRoute: typeof HistoryRoute
   SearchRoute: typeof SearchRoute
   SubscriptionsRoute: typeof SubscriptionsRoute
   TrendingRoute: typeof TrendingRoute
+  ChannelChannelIdRoute: typeof ChannelChannelIdRoute
+  WatchVideoIdRoute: typeof WatchVideoIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -99,15 +158,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/watch/$videoId': {
+      id: '/watch/$videoId'
+      path: '/watch/$videoId'
+      fullPath: '/watch/$videoId'
+      preLoaderRoute: typeof WatchVideoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/channel/$channelId': {
+      id: '/channel/$channelId'
+      path: '/channel/$channelId'
+      fullPath: '/channel/$channelId'
+      preLoaderRoute: typeof ChannelChannelIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HistoryRoute: HistoryRoute,
   SearchRoute: SearchRoute,
   SubscriptionsRoute: SubscriptionsRoute,
   TrendingRoute: TrendingRoute,
+  ChannelChannelIdRoute: ChannelChannelIdRoute,
+  WatchVideoIdRoute: WatchVideoIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
