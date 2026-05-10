@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "PrivateTube — Watch YouTube without tracking" },
+      { title: "UMABONAKUDE — Watch YouTube without tracking" },
       { name: "description", content: "A privacy-first YouTube client. No ads, no cookies, no account required." },
     ],
   }),
@@ -36,7 +36,7 @@ function Index() {
           Watch YouTube. <span className="text-primary">Without the watching.</span>
         </h1>
         <p className="relative mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
-          No ads. No Google cookies. No account. PrivateTube routes through privacy-friendly proxies and keeps everything local.
+          No ads. No Google cookies. No account. UMABONAKUDE routes through privacy-friendly proxies and keeps everything local.
         </p>
         <div className="relative mt-6 flex flex-wrap gap-4 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5"><Shield className="h-3.5 w-3.5 text-primary" /> No tracking</span>

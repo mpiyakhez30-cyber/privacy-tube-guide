@@ -6,7 +6,7 @@ import { Heart } from "lucide-react";
 
 export const Route = createFileRoute("/subscriptions")({
   component: SubsPage,
-  head: () => ({ meta: [{ title: "Subscriptions — PrivateTube" }] }),
+  head: () => ({ meta: [{ title: "Subscriptions — UMABONAKUDE" }] }),
 });
 
 function SubsPage() {

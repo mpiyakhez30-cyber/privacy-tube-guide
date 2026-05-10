@@ -6,7 +6,7 @@ import { history, type HistoryItem } from "@/lib/local-store";
 
 export const Route = createFileRoute("/history")({
   component: HistoryPage,
-  head: () => ({ meta: [{ title: "History — PrivateTube" }] }),
+  head: () => ({ meta: [{ title: "History — UMABONAKUDE" }] }),
 });
 
 function HistoryPage() {

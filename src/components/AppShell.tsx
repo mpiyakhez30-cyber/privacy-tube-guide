@@ -27,7 +27,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             >
               <Shield className="h-5 w-5" />
             </span>
-            <span className="hidden text-lg sm:inline">PrivateTube</span>
+            <span className="hidden text-lg sm:inline">UMABONAKUDE</span>
           </Link>
           <form
             className="ml-auto flex w-full max-w-xl items-center gap-2"

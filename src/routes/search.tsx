@@ -10,7 +10,7 @@ const searchSchema = z.object({ q: z.string().optional().default("") });
 export const Route = createFileRoute("/search")({
   validateSearch: searchSchema,
   component: SearchPage,
-  head: () => ({ meta: [{ title: "Search — PrivateTube" }] }),
+  head: () => ({ meta: [{ title: "Search — UMABONAKUDE" }] }),
 });
 
 function SearchPage() {
