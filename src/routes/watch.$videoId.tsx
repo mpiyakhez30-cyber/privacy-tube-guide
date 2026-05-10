@@ -10,7 +10,7 @@ import { Heart, HeartOff, ThumbsUp, Eye } from "lucide-react";
 
 export const Route = createFileRoute("/watch/$videoId")({
   component: WatchPage,
-  head: () => ({ meta: [{ title: "Watch — PrivateTube" }] }),
+  head: () => ({ meta: [{ title: "Watch — UMABONAKUDE" }] }),
 });
 
 function WatchPage() {

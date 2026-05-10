@@ -6,7 +6,7 @@ import { piped, formatViews } from "@/lib/piped";
 
 export const Route = createFileRoute("/channel/$channelId")({
   component: ChannelPage,
-  head: () => ({ meta: [{ title: "Channel — PrivateTube" }] }),
+  head: () => ({ meta: [{ title: "Channel — UMABONAKUDE" }] }),
 });
 
 function ChannelPage() {

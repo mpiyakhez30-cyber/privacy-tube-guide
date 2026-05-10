@@ -6,7 +6,7 @@ import { piped } from "@/lib/piped";
 
 export const Route = createFileRoute("/trending")({
   component: TrendingPage,
-  head: () => ({ meta: [{ title: "Trending — PrivateTube" }] }),
+  head: () => ({ meta: [{ title: "Trending — UMABONAKUDE" }] }),
 });
 
 function TrendingPage() {
